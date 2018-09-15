@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Game Of Life</title>
+		<title>Drum2D</title>
 		<meta name="description" content="Jon Conway's Game of Life">
 		<script src="init.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="styles.css">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
-		<h1>Jon Conway's Game of Life</h1>
-		<button class="button" id="start_button">Start</button>
-		<div>
-			<h2>Controls</h2>
-			<div>
-				Orange cells are alive and blue cells are not (and anything not within the grid is assumed unpopulated). Choose a preset configuration of live cells from the dropdown menu or create a new one by clicking the cell grid. The 'Start' button advances (or pauses) the game, and the rules (shown below) are applied at each advancing step.
+		<h1>Drum2D</h1>
+		<div>Hi! Define a range by calibrating, then start drumming!</div>
+		<button type="button" class="btn btn-primary" id="calibrate">Calibrate</button>
+
+		<div class="container" id="drumpad">
+			
+		</div>
+
+		<div class="dropdown">
+		  	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Choose an instrument!
+		  	</button>
+		  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Drum</a>
+			    <a class="dropdown-item" href="#">Another drum</a>
+			    <a class="dropdown-item" href="#">Maybe a piano</a>
 			</div>
-			<h2>Rules</h2>
-			<div>
-				<b>For a space that is 'populated':</b>
-				<ul>
-					<li>Each cell with one or no neighbors dies, as if by solitude.</li>
-					<li>Each cell with four or more neighbors dies, as if by overpopulation.</li>
-					<li>Each cell with two or three neighbors survives.</li>
-				</ul>
-				<b>For a space that is 'empty' or 'unpopulated'</b>
-				<ul>
-					<li>Each cell with three neighbors becomes populated.</li>
-				</ul>
-			</div>
+		</div>
 	</body>
 </html>
