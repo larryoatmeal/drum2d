@@ -1,37 +1,127 @@
+const rx = require('rxjs')
+const op = require('rxjs/operators')
 const express = require('express');
+const Readline = require('@serialport/parser-readline')
+
+
+
+
+
 var SerialPort = require('serialport');
 
 const app = express();
+// var server = require('http').createServer(app);  
+
+
+
+app.use(express.static(__dirname));  
 
 const port = 9000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Hello world ' + port);
 });
 
 
-const serialPortName = '/dev/ttyACM0';
+const io = require('socket.io')(server);
+
+
+// var io = require('socket.io')(http);
+
+const serialPortName = '/dev/tty.usbmodem1411';
 const baudRate = 9600;
 
 var serialPort = new SerialPort(serialPortName, {
 	baudRate: baudRate,
-}, () => {
-	console.log("Could not open serial port");
-	process.exit();
+    // parser: SerialPort.parsers.readline("\n")
 });		
 
 
-setupSerial(serialPort);
+app.get('/', (req, res)=>{
+	console.log("HELLO WORlD");
+	res.send(res.sendFile('index.html'));
+})
+
+var $serialPort = setupSerial(serialPort.pipe(new Readline()));
 
 function setupSerial(serialPort){
 	// Switches the port into "flowing mode"
+
+	var subject = new rx.Subject();
+
 	serialPort.on('data', function (data) {
-	    console.log('Data:', data);
+	    // console.log('Data:', data);
+	    subject.next(data);
 	});
+
+	return subject;
+
 	// Read data that is available but keep the stream from entering //"flowing mode"
-	serialPort.on('readable', function () {
-	    console.log('Data:', port.read());
-	});	
+	// serialPort.on('readable', function () {
+	//     console.log('Data:', port.read());
+	//   	subject.next(data);
+
+	// });	
 }
+
+$serialPort.pipe(
+	op.skip(5), //skip first few
+	op.throttleTime(1000),
+	// op.tap(console.log),
+	op.map(str =>  {
+		split = str.split('\t');
+		left = split[0]
+		right = split[0]
+		left = left.substring(4, left.length);//number starts on 4th character
+		right = right.substring(4, right.length);
+		return [parseInt(left), parseInt(right)]
+	})
+)
+
+$serialPort.subscribe(console.log);
+
+// $output = $serialPort;
+
+
+$output = rx.interval(1000);
+
+var clients = {};
+
+$status = rx.interval(5000).pipe().subscribe(() => {
+
+	console.log("CLIENTS", Object.keys(clients));
+});
+
+
+io.on('connection', function(client) {  
+	console.log('Client connected...');
+
+	clients[client.id] = client;
+
+	var $unsubscribe = new rx.Subject();
+	client.on('disconnect', function() {
+		console.log("DISCONNECTING");
+		$unsubscribe.next('disconnect');
+		// clients.set(client.id] = null;
+		delete clients[client.id];
+	})
+
+	client.on('join', function(data) {
+    	console.log(data);
+        client.emit('messages', 'Hello from server, streaming data now');
+
+        $output.pipe(op.takeUntil($unsubscribe)).subscribe(data => {
+        	if(data.key && data.value){
+	        	client.emit(data.key, data.value);
+        	}else{
+        		console.log("Data not formatted correctly");
+        	}
+        });
+	})
+});
+
+
+
+
 
 
 
