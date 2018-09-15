@@ -1,22 +1,21 @@
 window.onload = main;
 
 function main() {
+	var socket = io.connect("http://fffe2f02.ngrok.io/");
+
+	socket.on('connect', function(data) {
+		socket.emit('join', 'Hello World from client');
+	});
+
+	socket.on('messages', function(data) {
+                alert(data);
+        });
+
+	
 	renderDrumPad(4);
+	lightUpDrumPad(1);
+	lightUpDrumPad(2);
+	setTimeout(function(){darkenDrumPad(1)}, 1000);
+
 }
 
-function renderDrumPad(num_boxes) {
-	const drumpad = document.getElementById('drumpad');
-	const drumpadSpan = document.createElement('div');
-	drumpadSpan.className = "row align-items-center";
-	drumpad.appendChild(drumpadSpan);
-
-	for (var i = 0; i < num_boxes; i++) { 
-		const pad = document.createElement('div');
-		pad.className = "col";
-		drumpadSpan.appendChild(pad);
-
-		const padBody = document.createElement('div');
-		padBody.className = "card";
-		pad.appendChild(padBody);
-	}
-}
