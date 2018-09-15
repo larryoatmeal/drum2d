@@ -24,7 +24,7 @@ body {
 }
 
 .card {
-	padding-top: 150%;
+	padding-top: 50%;
 	background-color: var(--dark_color);
 }
 
