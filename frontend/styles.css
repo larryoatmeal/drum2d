@@ -2,9 +2,7 @@
 
 html {
     --light_color: #F2F7F7;
-    --mid_color: #4EAAAA;
     --dark_color: #2A2D34;
-    --dif_color: #FFA07A;
 }
 
 
@@ -14,4 +12,16 @@ body {
     font-family: "Raleway";
     color: var(--dark_color);
     background-color: var(--light_color);
+    margin: 2%;
+}
+
+
+/* Options */
+
+.dropdown {
+    display: inline-block;
+}
+
+.btn, .dropdown {
+    margin-top: 1%;
 }

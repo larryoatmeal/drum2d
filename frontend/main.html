@@ -2,16 +2,18 @@
 <html>
 	<head>
 		<title>Drum2D</title>
-		<meta name="description" content="Jon Conway's Game of Life">
-		<script src="init.js"></script>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<meta name="description" content="Drum2D web app: play the drums on any flat surface!">
+		<!-- <script src="index.js"></script> -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="styles.css">
 		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		<h1>Drum2D</h1>
-		<div>Hi! Define a range by calibrating, then start drumming!</div>
+		<div>Play the drums on any flat surface! Hit calibrate to define a range, then start drumming!</div>
 		<button type="button" class="btn btn-primary" id="calibrate">Calibrate</button>
 
 		<div class="container" id="drumpad">
@@ -19,14 +21,25 @@
 		</div>
 
 		<div class="dropdown">
-		  	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    Choose an instrument!
-		  	</button>
+			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Number of Pads
+			</button>
+		  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">1</a>
+			    <a class="dropdown-item" href="#">2</a>
+			    <a class="dropdown-item" href="#">3</a>
+			    <a class="dropdown-item" href="#">4</a>
+		  	</div>
+		</div>
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Instrument
+			</button>
 		  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			    <a class="dropdown-item" href="#">Drum</a>
-			    <a class="dropdown-item" href="#">Another drum</a>
-			    <a class="dropdown-item" href="#">Maybe a piano</a>
-			</div>
+			    <a class="dropdown-item" href="#">Drum 2</a>
+			    <a class="dropdown-item" href="#">Drum 3</a>
+		  	</div>
 		</div>
 	</body>
 </html>
