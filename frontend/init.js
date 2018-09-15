@@ -1,3 +1,5 @@
+window.onload = main;
+
 function main() {
 	renderDrumPad(4);
 }
@@ -15,11 +17,6 @@ function renderDrumPad(num_boxes) {
 
 		const padBody = document.createElement('div');
 		padBody.className = "card";
-		padBody.innerHTML = 'HI';
 		pad.appendChild(padBody);
 	}
 }
-
-
-
-main();

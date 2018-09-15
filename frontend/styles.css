@@ -16,6 +16,19 @@ body {
 }
 
 
+/* Drumpads */
+
+
+.col {
+	padding: 1% 1%;
+}
+
+.card {
+	padding-top: 150%;
+	background-color: var(--dark_color);
+}
+
+
 /* Options */
 
 .dropdown {
@@ -24,4 +37,5 @@ body {
 
 .btn, .dropdown {
     margin-top: 1%;
+    margin-bottom: 1%;
 }
