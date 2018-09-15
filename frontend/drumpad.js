@@ -29,3 +29,11 @@ function darkenDrumPad(pad_id) {
 	var pad = document.getElementById(id);
 	pad.setAttribute('style', 'background-color: var(--dark_color)');
 }
+
+
+function changeNumPads(numPads) {
+	//at some point, add setting active in dropdown menu
+	const drumpad = document.getElementById('drumpad');
+	drumpad.innerHTML = "";
+	renderDrumPad(numPads);
+}
