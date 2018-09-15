@@ -17,11 +17,27 @@ function renderDrumPad(num_boxes) {
 	}
 }
 
-function lightUpDrumPad(pad_id) {
-	//pad_id should be a raw number
+function lightUpDrumPad(pad_id, hitKeysRatio) {
 	const id = "pad" + pad_id.toString();
 	var pad = document.getElementById(id);
-	pad.setAttribute('style', 'background-color: var(--red)');
+
+	var red;
+	var green;
+
+	if (hitKeysRatio > 0.25){
+		red = (255).toString(16);
+		green  = Math.floor((1-hitKeysRatio)*(4/3)*(255)).toString(16);
+	}
+
+	else{
+		red = Math.floor((hitKeysRatio)*(4)*(255)).toString(16);
+		green = (255).toString(16);
+	}
+
+	var backgroundAttribute = 'background-color: ' + '#' + red + green + '00';
+
+
+	pad.setAttribute('style', backgroundAttribute);
 }
 
 function darkenDrumPad(pad_id) {
