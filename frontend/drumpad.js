@@ -42,16 +42,19 @@ function lightUpDrumPad(pad_id, hitKeysRatio) {
 		}
 	}
 
-	var backgroundAttribute = 'background-color: ' + '#' + red + green + '00';
+	var borderAttribute = 'border-color: ' + '#' + red + green + '00';
+	var boxShadow = 'border-color: ' + '#' + red + green + '00; box-shadow: 0px 0px 20px 10px ' + "#" + red + green + '00, inset 0px 0px 10px 2px ' + "#" + red + green + '00';
 
 
-	pad.setAttribute('style', backgroundAttribute);
+
+	//pad.setAttribute('style', borderAttribute);
+	pad.setAttribute('style', boxShadow);
 }
 
 function darkenDrumPad(pad_id) {
 	const id = "pad" + pad_id.toString();
 	var pad = document.getElementById(id);
-	pad.setAttribute('style', 'background-color: var(--dark_color)');
+	pad.setAttribute('style', 'border-color: var(--dark_color)');
 }
 
 
