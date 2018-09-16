@@ -18,15 +18,22 @@ function main() {
 var cur_bank = '808';
 
 function hit(n){
+	/*var freq = (n.y*9000) + 300;
+
+	var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+	    frequency: freq,
+	    peak: 10
+	});*/
+
 	if (n.hand == "left"){
-		playSound(cur_bank, 0, n.strength);
+		playSound(cur_bank, 0, n.strength, n.y);
 
 		lightUpDrumPad(0,n.strength);
 		setTimeout(function(){darkenDrumPad(0)}, 100);
 	}
 
 	else{
-		playSound(cur_bank, 1, n.strength);
+		playSound(cur_bank, 1, n.strength, n.y);
 
 		lightUpDrumPad(1,n.strength);
 		setTimeout(function(){darkenDrumPad(1)}, 100);
