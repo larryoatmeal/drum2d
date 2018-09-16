@@ -19,7 +19,11 @@ function detectScratch(event) {
 			scratching = true;
 			createScratch();
 		}
-	}, 100)
+		if (!is_scratch && scratching) {
+			scratching = false;
+			stopScratch();
+		}
+	}, 500)
 }
 
 function checkMotion(coords) {
@@ -39,10 +43,9 @@ function checkMotion(coords) {
 }
 
 function createScratch() {
-	// play random record scratch
-	console.log("scratch scratch!");
-
+	// play random record scratch, at most once every half second
 	playScratch();
-
-	scratching = false;
+	setTimeout(() => {
+		scratching = false
+	}, 500);
 }

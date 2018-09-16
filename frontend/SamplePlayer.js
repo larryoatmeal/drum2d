@@ -18,6 +18,8 @@ const scratches = [
 	'140SP04',
 ]
 
+current_scratch_path = ""
+
 
 const soundCache = {
 
@@ -43,6 +45,7 @@ function playSound(bankname, pad, level){
 	console.log(path)
 	if(soundCache[path]){
 		soundCache[path].stop()
+		current_scratch_path = path
 		soundCache[path].play()
 	}else{
 		console.log("SOUND NOT LOADED");
@@ -56,9 +59,14 @@ function playScratch() {
 	if(soundCache[path]){
 		soundCache[path].stop()
 		soundCache[path].play()
+		current_scratch_path = path
 	}else{
 		console.log("SOUND NOT LOADED");
 	}
+}
+
+function stopScratch() {
+	soundCache[current_scratch_path].stop()
 }
 
 function loadPaths(paths, onload){
@@ -69,9 +77,10 @@ function loadPaths(paths, onload){
 				var sound = new Pizzicato.Sound(path, function(){
 					console.log("LOADED:",path)
 				})
+				sound.release = 0.2
 				soundCache[path] = sound;
 				return rxjs.of(sound);
-			}else{
+			} else{
 				return rxjs.of(soundCache[path])
 			}
 
