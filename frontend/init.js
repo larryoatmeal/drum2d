@@ -1,6 +1,6 @@
 window.onload = main;
 
-var socket = io.connect("http://fffe2f02.ngrok.io/");
+// var socket = io.connect("http://fffe2f02.ngrok.io/");
 
 function main() {
 	navigator.requestMIDIAccess().then( onMIDISuccess, onMIDIFailure );
