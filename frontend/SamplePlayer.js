@@ -38,14 +38,30 @@ function getScratchPath(scratch){
 
 //pad 0 or 1
 //level 0 to 1
-function playSound(bankname, pad, level){
+var lastFilter;
+var current_scratch_path;
+
+function playSound(bankname, pad, level, tone){
 	console.log("playing");
 	path = getSoundPath(bankname, pad, Math.max(Math.min(Math.floor(level * 4), 4), 1) )
 	console.log(path)
 	if(soundCache[path]){
+		if (current_scratch_path){
+			soundCache[current_scratch_path].removeEffect(lastFilter);
+		}
+
+		var freq = ((tone-1)*10000) + 1000;
+
+		var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+	    	frequency: freq,
+	    	peak: 10
+		});
+		
 		soundCache[path].stop()
 		current_scratch_path = path
+		soundCache[path].addEffect(lowPassFilter);
 		soundCache[path].play()
+		lastFilter = lowPassFilter;
 	}else{
 		console.log("SOUND NOT LOADED");
 	}
