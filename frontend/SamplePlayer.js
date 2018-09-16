@@ -31,8 +31,8 @@ function getSoundPath(bankname, pad, level){
 	return sample_path
 }
 
-function getScratchPath(scratch){
-	var scratch_path ='./Soundfiles/Vinyl_Scratches/' + scratch + '.wav'
+function getScratchPath(scratch_num){
+	var scratch_path ='./Soundfiles/Vinyl_Scratches/' + scratches[scratch_num] + '.wav'
 	return scratch_path
 }
 
@@ -49,8 +49,8 @@ function playSound(bankname, pad, level){
 	}
 }
 
-function playScratch(){
-	scratch_num = Math.random()*(scratches.length-1)
+function playScratch() {
+	scratch_num = Math.floor(Math.random()*(scratches.length-1))
 	path = getScratchPath(scratch_num)
 	console.log(path)
 	if(soundCache[path]){

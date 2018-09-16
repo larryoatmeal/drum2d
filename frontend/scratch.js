@@ -19,9 +19,6 @@ function detectScratch(event) {
 			scratching = true;
 			createScratch();
 		}
-		if (!is_scratch) {
-			scratching = false;
-		}
 	}, 100)
 }
 
@@ -46,5 +43,6 @@ function createScratch() {
 	console.log("scratch scratch!");
 
 	playScratch();
+
 	scratching = false;
 }
