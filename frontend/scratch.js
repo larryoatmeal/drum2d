@@ -1,4 +1,5 @@
 let scratching = false;
+loadScratches(console.log);
 
 $(document).mousemove(detectScratch);
 
@@ -44,6 +45,6 @@ function createScratch() {
 	// play random record scratch
 	console.log("scratch scratch!");
 
-	playScratch(console.log);
+	playScratch();
 	scratching = false;
 }

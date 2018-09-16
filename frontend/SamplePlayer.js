@@ -50,8 +50,8 @@ function playSound(bankname, pad, level){
 }
 
 function playScratch(){
-	loadScratch();
-	path = getSoundPath(bankname, pad, Math.max(Math.min(Math.floor(level * 4), 4), 1) )
+	scratch_num = Math.random()*(scratches.length-1)
+	path = getScratchPath(scratch_num)
 	console.log(path)
 	if(soundCache[path]){
 		soundCache[path].stop()
@@ -80,10 +80,11 @@ function loadPaths(paths, onload){
 	).subscribe()
 }
 
-function loadScratch(onload){
+function loadScratches(onload){
 	paths = []
-	scratch_num = Math.random()*(scratches.length-1)
-	paths.push('./Soundfiles/Vinyl_Scratches/' + scratches[scratch_num] + '.wav')
+	for (var i = 0; i < scratches.length; i++) {
+		paths.push('./Soundfiles/Vinyl_Scratches/' + scratches[i] + '.wav')
+	}
 	loadPaths(paths, onload)
 }
 
@@ -121,6 +122,3 @@ function loadDrumBank(bankname, onload){
 		console.log("bank doesn't exist");
 	}
 }
-
-
-
