@@ -44,39 +44,6 @@ function createScratch() {
 	// play random record scratch
 	console.log("scratch scratch!");
 
-	// call play_random_scratch for {filename, duration}
-
-	let duration_of_wav = 5000; // random_scratch.duration 
-
-	let timer = setTimeout(() => {
-		scratching = false
-	}, duration_of_wav);
-
-	var audio = new Audio("random_scratch.wav");
-	audio.play();
-
-	while (true) {
-		if (scratching == false) {
-			fadeoutAudio(audio);
-			clearTimeout(timer);
-			return;
-		}
-	}
-}
-
-function fadeoutAudio(audio) {
-	var vol = audio.volume;
-
-	// fades out in 100ms
-	var fadeout = setInterval(
-		function() {
-		    if (vol > 0) {
-		      	vol -= vol/10;
-		      	audio.volume = Math.max(0, vol);
-		    }
-		    else {
-		      	// Stop the setInterval when 0 is reached
-		      	clearInterval(fadeout);
-		    }
-		}, 10);
+	playScratch(console.log);
+	scratching = false;
 }
