@@ -1,5 +1,6 @@
 window.onload = main;
 
+
 function main() {
 	navigator.requestMIDIAccess().then( onMIDISuccess, onMIDIFailure );
 	
@@ -17,11 +18,13 @@ function main() {
 
 function hit(n){
 	if (n.hand == "left"){
+		playSound('Bongos', 0, n.strength);
 		lightUpDrumPad(0,n.strength);
 		setTimeout(function(){darkenDrumPad(0)}, 100);
 	}
 
 	else{
+		playSound('Bongos', 1, n.strength);
 		lightUpDrumPad(1,n.strength);
 		setTimeout(function(){darkenDrumPad(1)}, 100);
 	}

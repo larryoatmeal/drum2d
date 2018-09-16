@@ -41,6 +41,7 @@ function getScratchPath(scratch_num){
 //pad 0 or 1
 //level 0 to 1
 function playSound(bankname, pad, level){
+	console.log("playing");
 	path = getSoundPath(bankname, pad, Math.max(Math.min(Math.floor(level * 4), 4), 1) )
 	console.log(path)
 	if(soundCache[path]){
@@ -131,3 +132,10 @@ function loadDrumBank(bankname, onload){
 		console.log("bank doesn't exist");
 	}
 }
+
+for(var i = 0; i < drumbanks.length; i++){
+	loadDrumBank(drumbanks[i], console.log)
+}
+
+
+
