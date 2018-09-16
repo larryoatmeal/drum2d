@@ -14,7 +14,7 @@ function main() {
 
 	onHit(hit);
 
-	$(".card").sparkleh();
+	
 }
 
 var cur_bank = '808';

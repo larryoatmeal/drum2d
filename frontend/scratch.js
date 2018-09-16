@@ -45,7 +45,19 @@ function checkMotion(coords) {
 function createScratch() {
 	// play random record scratch, at most once every half second
 	playScratch();
+
+	var sparkles = $(document.body).sparkleh();
+	for(var i = 0; i < sparkles.length; i++){
+		sparkles[i].over();
+	}
+
 	setTimeout(() => {
 		scratching = false;
+		for(var i = 0; i < sparkles.length; i++){
+			sparkles[i].out();
+		}
 	}, 500);
+
+
+
 }

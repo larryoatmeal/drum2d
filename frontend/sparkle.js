@@ -53,32 +53,34 @@
 
 $.fn.sparkleh = function( options ) {
     
-  return this.each( function(k,v) {
+  var sparkles = [];
+  this.each( function(k,v) {
     
     var $this = $(v).css("position","relative");
     
     var settings = $.extend({
       width: $this.outerWidth(),
       height: $this.outerHeight(),
-      color: "#FFFFFF",
-      count: 30,
-      overlap: 0,
-      speed: 1
+      color: "#FF3FFF",
+      count: 15,
+      overlap: 24.34,
+      speed: 25
     }, options );
     
     var sparkle = new Sparkle( $this, settings );
-    
-    $this.on({
-      "mouseover focus" : function(e) {
-        sparkle.over();
-      },
-      "mouseout blur" : function(e) {
-        sparkle.out();
-      }
-    });
+    sparkles.push(sparkle);
+    // $this.on({
+    //   "mouseover focus" : function(e) {
+    //     sparkle.over();
+    //   },
+    //   "mouseout blur" : function(e) {
+    //     sparkle.out();
+    //   }
+    // });
     
   });
   
+  return sparkles;
 }
 
 
@@ -175,7 +177,7 @@ Sparkle.prototype = {
       
       ctx.save();
       ctx.globalAlpha = derpicle.opacity;
-      ctx.drawImage(this.sprite, derpicle.style, 0, 7, 7, derpicle.position.x, derpicle.position.y, 7, 7);
+      ctx.drawImage(this.sprite, derpicle.style, 0, 7, 7, derpicle.position.x, derpicle.position.y, 15, 15);
       
       if( this.options.color ) {  
         
@@ -229,7 +231,7 @@ Sparkle.prototype = {
          }
          
          if( _this.fade ) {
-           u.opacity -= 0.02;
+           u.opacity -= 0.08;
          } else {
            u.opacity -= 0.005;
          }
@@ -259,7 +261,7 @@ Sparkle.prototype = {
   
   "cancel" : function() {
     
-    this.fadeCount = 100;
+    this.fadeCount = 50;
 
   },
   
