@@ -1,4 +1,4 @@
-var BUFFER_TIME = 70;
+var BUFFER_TIME = 40;
 var $keyDowns = rxjs.fromEvent(document, 'keydown');
 
 leftHandKeyMap = {
