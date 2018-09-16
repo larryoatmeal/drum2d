@@ -19,7 +19,7 @@ var cur_bank = '808';
 
 function hit(n){
 	if (n.hand == "left"){
-		playSound(cur_bank, 1, n.strength);
+		playSound(cur_bank, 0, n.strength);
 
 		lightUpDrumPad(0,n.strength);
 		setTimeout(function(){darkenDrumPad(0)}, 100);
