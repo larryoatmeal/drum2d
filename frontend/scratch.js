@@ -23,7 +23,7 @@ function detectScratch(event) {
 			scratching = false;
 			stopScratch();
 		}
-	}, 200);
+	}, 100);
 }
 
 function checkMotion(coords) {
