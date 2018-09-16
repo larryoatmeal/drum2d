@@ -24,14 +24,22 @@ function lightUpDrumPad(pad_id, hitKeysRatio) {
 	var red;
 	var green;
 
+	//special modifications due to hitKeysRatio being .25, .5, .75.1
 	if (hitKeysRatio > 0.25){
 		red = (255).toString(16);
-		green  = Math.floor((1-hitKeysRatio)*(4/3)*(255)).toString(16);
+		green  = Math.floor((1-hitKeysRatio)*(2)*(255)).toString(16);
+
+		if (green == "0"){
+			green = "00"
+		}
 	}
 
 	else{
-		red = Math.floor((hitKeysRatio)*(4)*(255)).toString(16);
+		red = Math.floor((hitKeysRatio - 0.25)*(4)*(255)).toString(16);
 		green = (255).toString(16);
+		if (red == "0"){
+			red = "00"
+		}
 	}
 
 	var backgroundAttribute = 'background-color: ' + '#' + red + green + '00';
