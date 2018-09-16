@@ -23,7 +23,7 @@ function detectScratch(event) {
 			scratching = false;
 			stopScratch();
 		}
-	}, 500)
+	}, 250)
 }
 
 function checkMotion(coords) {
@@ -47,5 +47,5 @@ function createScratch() {
 	playScratch();
 	setTimeout(() => {
 		scratching = false
-	}, 500);
+	}, 250);
 }

@@ -18,8 +18,6 @@ const scratches = [
 	'140SP04',
 ]
 
-current_scratch_path = ""
-
 
 const soundCache = {
 
@@ -33,8 +31,8 @@ function getSoundPath(bankname, pad, level){
 	return sample_path
 }
 
-function getScratchPath(scratch_num){
-	var scratch_path ='./Soundfiles/Vinyl_Scratches/' + scratches[scratch_num] + '.wav'
+function getScratchPath(scratch){
+	var scratch_path ='./Soundfiles/Vinyl_Scratches/' + scratch + '.wav'
 	return scratch_path
 }
 
@@ -55,19 +53,18 @@ function playSound(bankname, pad, level){
 
 function playScratch() {
 	scratch_num = Math.floor(Math.random()*(scratches.length-1))
-	path = getScratchPath(scratch_num)
+	path = getScratchPath(scratches[scratch_num])
 	console.log(path)
 	if(soundCache[path]){
 		soundCache[path].stop()
 		soundCache[path].play()
-		current_scratch_path = path
 	}else{
 		console.log("SOUND NOT LOADED");
 	}
 }
 
 function stopScratch() {
-	soundCache[current_scratch_path].stop()
+	scratches.forEach((scratch) => soundCache[getScratchPath(scratch)].stop())
 }
 
 function loadPaths(paths, onload){
@@ -78,7 +75,7 @@ function loadPaths(paths, onload){
 				var sound = new Pizzicato.Sound(path, function(){
 					console.log("LOADED:",path)
 				})
-				sound.release = 0.2
+				sound.release = 0.5
 				soundCache[path] = sound;
 				return rxjs.of(sound);
 			} else{
@@ -125,7 +122,6 @@ function loadDrumBank(bankname, onload){
 				// }
 			}
 		}
-		console.log(paths);
 		loadPaths(paths, onload)
 		
 	}else{
