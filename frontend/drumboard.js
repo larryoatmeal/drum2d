@@ -1,4 +1,4 @@
-var BUFFER_TIME = 20;
+var BUFFER_TIME = 70;
 var $keyDowns = rxjs.fromEvent(document, 'keydown');
 
 leftHandKeyMap = {
@@ -113,7 +113,7 @@ $drumStream = rxjs.merge(
 )
 
 function onHit(listener){
-	$drumStream.subscribe(onHit);
+	$drumStream.subscribe(listener);
 }
 
 
