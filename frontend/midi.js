@@ -11,7 +11,7 @@ function onMIDIFailure(msg) {
   console.log( "Failed to get MIDI access - " + msg );
 }
 
-navigator.requestMIDIAccess().then( onMIDISuccess, onMIDIFailure );
+//navigator.requestMIDIAccess().then( onMIDISuccess, onMIDIFailure );
 
 
 //returns a list of lists: [output.manufacturer + output.name, output.id]
@@ -33,7 +33,7 @@ function listMidiOutputs(midiAccess) {
 //portID is the id of the midi output (found in the array returned by listMidiOutputs)
 //note is the midi number of the note, 0 <= velocity <= 127
 //if release time > 0 (default -1), a note off message with 
-//specified releaseVelocity(default 64) is sent after releaseTime ms    
+//specified releaseVelocity (default 64) is sent after releaseTime ms    
 function sendMidiNoteOn( midiAccess, portID, note, velocity, releaseTime = -1, releaseVelocity = 64) {
     var noteOnMessage = [0x90, note, velocity];    //[0x90, 60, 0x7f] = note on, middle C, full velocity 
     var output = midiAccess.outputs.get(portID);
