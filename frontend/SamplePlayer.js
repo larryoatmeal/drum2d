@@ -122,3 +122,10 @@ function loadDrumBank(bankname, onload){
 		console.log("bank doesn't exist");
 	}
 }
+
+for(var i = 0; i < drumbanks.length; i++){
+	loadDrumBank(drumbanks[i], console.log)
+}
+
+
+

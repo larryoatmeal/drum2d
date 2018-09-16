@@ -1,5 +1,6 @@
 window.onload = main;
 
+
 function main() {
 	navigator.requestMIDIAccess().then( onMIDISuccess, onMIDIFailure );
 	
