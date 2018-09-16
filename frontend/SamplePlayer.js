@@ -75,7 +75,7 @@ function loadPaths(paths, onload){
 				var sound = new Pizzicato.Sound(path, function(){
 					console.log("LOADED:",path)
 				})
-				sound.release = 0.5
+				sound.release = 1
 				soundCache[path] = sound;
 				return rxjs.of(sound);
 			} else{

@@ -23,7 +23,7 @@ function detectScratch(event) {
 			scratching = false;
 			stopScratch();
 		}
-	}, 250)
+	}, 200);
 }
 
 function checkMotion(coords) {
@@ -46,6 +46,6 @@ function createScratch() {
 	// play random record scratch, at most once every half second
 	playScratch();
 	setTimeout(() => {
-		scratching = false
-	}, 250);
+		scratching = false;
+	}, 500);
 }
